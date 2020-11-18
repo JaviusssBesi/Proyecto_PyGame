@@ -1,16 +1,16 @@
-import pygame
+import pygame, fuentes, juego, conexion, ventana
 
-'''
-Iniciar de pygame
-'''
+#Iniciar pygame
 pygame.init()
 
 #Creación de la pantalla de ejecución
-WIDTH = 800
-HEIGHT = 600
+WIDTH = 1000
+HEIGHT = 800
 ventana = pygame.display.set_mode((WIDTH,HEIGHT))
+
+#Fondo del juego
 fondo = pygame.image.load('img/virus.jpg')
-picture = pygame.transform.scale(fondo, (800, 600))
+fondo = pygame.transform.scale(fondo, (WIDTH, HEIGHT))
 
 #Título e icono
 pygame.display.set_caption("Destruye Virus")
@@ -21,18 +21,12 @@ pygame.display.set_icon(icon)
 file = 'music/retro.mp3'
 pygame.mixer.init()
 pygame.mixer.music.load(file)
-pygame.mixer.music.set_volume(0.008)
+pygame.mixer.music.set_volume(0.009)
 pygame.mixer.music.play(-1) # If the loops is -1 then the music will repeat indefinitely.
 
 #Forma del cursor
 pygame.mouse.set_cursor(*pygame.cursors.broken_x)
 
-#Textos del juego
-AMARILLO = (255, 255, 0)
-AZUL = (0, 0, 255)
-fuente= pygame.font.Font(None,50)
-texto = fuente.render("Virus Destroyer",0, AZUL)
-text_rect = texto.get_rect(center=(WIDTH/2, HEIGHT/2))
 
 #loop del juego
 running = True
@@ -41,15 +35,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     ventana.blit(fondo, (0, 0))
-    ventana.blit(texto, text_rect)
+    ventana.blit(fuentes.Fuentes.texto, fuentes.Fuentes.tr1)
+    ventana.blit(fuentes.Fuentes.texto2, fuentes.Fuentes.tr2)
     pygame.display.update()
-
-class Main():
-    def __init__(self):
-
-
-
-
-
-if __name__ == '__main__':
-    window = Main()
