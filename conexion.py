@@ -25,31 +25,18 @@ class Conexion():
         else:
             print("Error: ", query.lastError().text())
 
-    def cargarCliente():
-        dni = var.ui.editDni.text()
+    def cargarJug():
+        nombre = var.ui.editDni.text()
         query = QtSql.QSqlQuery()
-        query.prepare('select * from clientes where dni = :dni')
-        query.bindValue(':dni', dni)
+        query.prepare('select * from puntuacion where nombre = :nombre')
+        query.bindValue(':nombre', nombre)
         if query.exec_():
             while query.next():
                 var.ui.lblCodcli.setText(str(query.value(0)))
                 var.ui.editClialta.setText(query.value(4))
                 var.ui.editDir.setText(query.value(5))
                 var.ui.cmbProv.setCurrentText(str(query.value(6)))
-                if str(query.value(7)) == 'Mujer':
-                    var.ui.rbtFem.setChecked(True)
-                    var.ui.rbtMasc.setChecked(False)
-                else:
-                    var.ui.rbtMasc.setChecked(True)
-                    var.ui.rbtFem.setChecked(False)
-                for data in var.chkpago:
-                    data.setChecked(False)
-                if 'Efectivo' in query.value(8):
-                    var.chkpago[0].setChecked(True)
-                if 'Tarjeta' in query.value(8):
-                    var.chkpago[1].setChecked(True)
-                if 'Transferencia' in query.value(8):
-                    var.chkpago[2].setChecked(True)
+
 
     def mostrarClientes(self):
         '''
