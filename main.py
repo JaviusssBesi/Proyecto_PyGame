@@ -37,20 +37,21 @@ pygame.mouse.set_cursor(*pygame.cursors.broken_x)
 # JUEGO
 
 
-class ventPrincipal():
-    def __init__(self):
-        super().__init__()
-        screen = pygame.display.set_mode([WIDTH, HEIGHT])
-        screen.blit(fondo, (0,0))
+def ventPrincipal():
+    pygame.init()
 
-        font = pygame.font.SysFont("serif", 60)
-        text = font.render("Clica en la pantalla para empezar", True, BLACK)  # Texto
-        center_x = (WIDTH // 2) - (text.get_width() // 2)  # Posición texto
-        center_y = (HEIGHT // 2) - (text.get_height() // 2)
-        screen.blit(text, [center_x, center_y])  # Ponerlo en pantalla
+    screen = pygame.display.set_mode([WIDTH, HEIGHT])
+    screen.blit(fondo, (0, 0))
 
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
+    font = pygame.font.SysFont("serif", 60)
+    text = font.render("Clica en la pantalla para empezar", True, BLACK)  # Texto
+    center_x = (WIDTH // 2) - (text.get_width() // 2)  # Posición texto
+    center_y = (HEIGHT // 2) - (text.get_height() // 2)
+    screen.blit(text, [center_x, center_y])  # Ponerlo en pantalla
+
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            main()
 
 
 class Enemigo(pygame.sprite.Sprite):
@@ -66,7 +67,7 @@ class Enemigo(pygame.sprite.Sprite):
 
         if self.rect.x > WIDTH:
             self.rect.x = -10
-            self.rect.y = random.randrange(900)
+            self.rect.y = random.randrange(50, HEIGHT)
 
 
 class Game(object):
@@ -81,7 +82,7 @@ class Game(object):
         for i in range(50):
             enemy = Enemigo()
             enemy.rect.x = random.randrange(WIDTH)
-            enemy.rect.y = random.randrange(HEIGHT)
+            enemy.rect.y = random.randrange(50, HEIGHT)
 
             self.enemy_list.add(enemy)
             self.all_sprites_list.add(enemy)
@@ -127,13 +128,6 @@ class Game(object):
             screen.blit(text, [center_x, center_y])  # Ponerlo en pantalla
 
         if not self.game_over:
-            screen.blit(fondo, (0, 0))
-            font = pygame.font.SysFont("serif", 60)
-            text = font.render("Clica en la pantalla para empezar", True, BLACK)  # Texto
-            center_x = (WIDTH // 2) - (text.get_width() // 2)  # Posición texto
-            center_y = (HEIGHT // 2) - (text.get_height() // 2)
-            screen.blit(text, [center_x, center_y])  # Ponerlo en pantalla
-
             self.all_sprites_list.draw(screen)
 
         pygame.display.flip()
