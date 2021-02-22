@@ -178,7 +178,7 @@ ventana = VentanaPrincipal()
 jugador = ObjetoJugador()
 jugadores.add(jugador)
 
-numero_enem = 35
+numero_enem = 32
 
 for x in range(numero_enem):
     enemigo = Enemigos()
@@ -243,8 +243,8 @@ while ejecutando:
 
             #Para que sigan saliendo los enemigos
             for y in range(3):
-                numero_enem -= 5
                 if not enemigos:
+                    numero_enem -= 5
                     for z in range(numero_enem):
                         enemigo = Enemigos()
                         enemigos.add(enemigo)
@@ -306,8 +306,8 @@ while ejecutando:
 
                 # Para que sigan saliendo los enemigos
                 for y in range(3):
-                    numero_enem -= 5
                     if not enemigos:
+                        numero_enem -= 10
                         for z in range(numero_enem):
                             enemigo = Enemigos()
                             enemigos.add(enemigo)
