@@ -1,3 +1,5 @@
+#Hecho por: Javier Besada y Oscar Blanco
+
 import pygame, random
 
 pygame.init()
